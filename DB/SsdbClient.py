@@ -63,7 +63,7 @@ class SsdbClient(object):
         :param num:
         :return:
         """
-        data = self.__conn.hincrby(self.name, proxy, num)
+        data = self.__conn.hset(self.name, proxy, num)
         return data
 
     def delete(self, key):
@@ -110,3 +110,7 @@ class SsdbClient(object):
 
     def changeTable(self, name):
         self.name = name
+
+if __name__ == '__main__':
+    c = SsdbClient('useful_proxy', '118.24.52.95', 8899)
+    print(c.getAll())
